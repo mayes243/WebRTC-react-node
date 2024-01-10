@@ -11,14 +11,14 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    cors: true,
   },
 });
 
 const emailToSocketIdMap = new Map();
 const socketidToEmailMap = new Map();
 
-app.use(cors({ origin: "*" }));
+app.use(cors());
 
 app.get("/", (req, res) => {
   const jsonMessage = {
