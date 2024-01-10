@@ -9,7 +9,10 @@ export const useSocket = () => {
 };
 
 export const SocketProvider = (props) => {
-  const socket = useMemo(() => io(process.env.REACT_APP_BASE_URL, { secure: true }), []);
+  const socket = useMemo(
+    () => io(process.env.REACT_APP_BASE_URL, { transports: ["websocket"] }),
+    []
+  );
 
   useEffect(() => {
     // Handle connection errors
