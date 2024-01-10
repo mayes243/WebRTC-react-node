@@ -132,7 +132,7 @@ const RoomPage = () => {
       {remoteStream && (
         <div className="mt-4">
           <h1 className="text-xl font-bold mb-2">Remote Stream</h1>
-          <ReactPlayer playing muted height="200px" width="200px" url={remoteStream} />
+          <ReactPlayer playing height="200px" width="200px" url={remoteStream} />
         </div>
       )}
     </div>
