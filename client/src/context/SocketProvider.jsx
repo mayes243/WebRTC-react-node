@@ -9,7 +9,7 @@ export const useSocket = () => {
 };
 
 export const SocketProvider = (props) => {
-  const socket = useMemo(() => io(process.env.REACT_APP_BASE_URL), []);
+  const socket = useMemo(() => io(process.env.REACT_APP_BASE_URL, { secure: true }), []);
 
   useEffect(() => {
     // Handle connection errors
