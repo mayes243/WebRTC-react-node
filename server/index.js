@@ -1,6 +1,7 @@
 const { Server } = require("socket.io");
 const http = require("http");
 const express = require("express");
+const cors = require("cors");
 
 // Create an Express app
 const app = express();
@@ -14,6 +15,8 @@ const io = new Server(server, {
 
 const emailToSocketIdMap = new Map();
 const socketidToEmailMap = new Map();
+
+app.use(cors());
 
 app.get("/", (req, res) => {
   const jsonMessage = {
