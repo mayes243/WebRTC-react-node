@@ -11,5 +11,7 @@ export const useSocket = () => {
 export const SocketProvider = (props) => {
   const socket = useMemo(() => io(process.env.REACT_APP_BASE_URL), []);
 
+  console.log(process.env.REACT_APP_BASE_URL, "process.env.REACT_APP_BASE_URL");
+
   return <SocketContext.Provider value={socket}>{props.children}</SocketContext.Provider>;
 };
