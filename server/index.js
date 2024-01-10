@@ -1,8 +1,12 @@
 const { Server } = require("socket.io");
 const http = require("http");
+const express = require("express");
+
+// Create an Express app
+const app = express();
 
 // Create an HTTP server
-const server = http.createServer();
+const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: true,
@@ -10,6 +14,17 @@ const io = new Server(server, {
 
 const emailToSocketIdMap = new Map();
 const socketidToEmailMap = new Map();
+
+app.get("/", (req, res) => {
+  const jsonMessage = {
+    greeting: "Welcome to the WebRTC!",
+    description: "This is a WebRTC application using Socket.IO.",
+    timestamp: new Date(),
+    author: "Ma Ýes",
+  };
+
+  res.json(jsonMessage);
+});
 
 io.on("connection", (socket) => {
   console.log(`Socket Connected`, socket.id);
