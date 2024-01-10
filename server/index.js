@@ -1,35 +1,11 @@
 const { Server } = require("socket.io");
-const http = require("http");
-const express = require("express");
-const cors = require("cors");
 
-// Create an Express app
-const app = express();
-
-// Create an HTTP server
-const server = http.createServer(app);
-
-const io = new Server(server, {
-  cors: {
-    origin: "*",
-  },
+const io = new Server(8000, {
+  cors: true,
 });
 
 const emailToSocketIdMap = new Map();
 const socketidToEmailMap = new Map();
-
-app.use(cors({ origin: "*" }));
-
-app.get("/", (req, res) => {
-  const jsonMessage = {
-    greeting: "Welcome to the WebRTC!",
-    description: "This is a WebRTC application using Socket.IO.",
-    timestamp: new Date(),
-    author: "Ma Ýes",
-  };
-
-  res.json(jsonMessage);
-});
 
 io.on("connection", (socket) => {
   console.log(`Socket Connected`, socket.id);
@@ -59,11 +35,4 @@ io.on("connection", (socket) => {
     console.log("peer:nego:done", ans);
     io.to(to).emit("peer:nego:final", { from: socket.id, ans });
   });
-});
-
-const port = process.env.PORT || 8000;
-
-// Start the server and listen on the specified port
-server.listen(port, () => {
-  console.log(`Server started at http://localhost:${port}`);
 });
