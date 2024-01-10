@@ -9,10 +9,7 @@ export const useSocket = () => {
 };
 
 export const SocketProvider = (props) => {
-  const socket = useMemo(
-    () => io(window?.location?.hostname || process.env.REACT_APP_BASE_URL),
-    []
-  );
+  const socket = useMemo(() => io(process.env.REACT_APP_BASE_URL), []);
 
   useEffect(() => {
     // Handle connection errors
