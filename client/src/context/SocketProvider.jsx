@@ -10,7 +10,16 @@ export const useSocket = () => {
 
 export const SocketProvider = (props) => {
   const socket = useMemo(
-    () => io(process.env.REACT_APP_BASE_URL, { transports: ["websocket"] }),
+    () =>
+      io(process.env.REACT_APP_BASE_URL, {
+        reconnectionDelay: 1000,
+        reconnection: true,
+        reconnectionAttempts: 10,
+        transports: ["websocket"],
+        agent: false,
+        upgrade: false,
+        rejectUnauthorized: false,
+      }),
     []
   );
 
