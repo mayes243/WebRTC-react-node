@@ -18,7 +18,13 @@ const io = new Server(server, {
 const emailToSocketIdMap = new Map();
 const socketidToEmailMap = new Map();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: JSON.parse(process.env.ALLOWED_ORIGINS),
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 
 app.get("/", (req, res) => {
   const jsonMessage = {
