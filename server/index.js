@@ -4,30 +4,30 @@ const express = require("express");
 const cors = require("cors");
 
 // Create an Express app
-const app = express();
+// const app = express();
 
 // Create an HTTP server
-const server = http.createServer(app);
+const server = http.createServer();
 
-const io = new Server(server, {
+const io = new Server(8000, {
   cors: true,
 });
 
 const emailToSocketIdMap = new Map();
 const socketidToEmailMap = new Map();
 
-app.use(cors());
+// app.use(cors());
 
-app.get("/", (req, res) => {
-  const jsonMessage = {
-    greeting: "Welcome to the WebRTC!",
-    description: "This is a WebRTC application using Socket.IO.",
-    timestamp: new Date(),
-    author: "Ma Ýes",
-  };
+// app.get("/", (req, res) => {
+//   const jsonMessage = {
+//     greeting: "Welcome to the WebRTC!",
+//     description: "This is a WebRTC application using Socket.IO.",
+//     timestamp: new Date(),
+//     author: "Ma Ýes",
+//   };
 
-  res.json(jsonMessage);
-});
+//   res.json(jsonMessage);
+// });
 
 io.on("connection", (socket) => {
   console.log(`Socket Connected`, socket.id);
